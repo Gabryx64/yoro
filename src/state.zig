@@ -1,13 +1,13 @@
 const std = @import("std");
 const RwLock = std.Thread.RwLock;
 const Arena = std.heap.ArenaAllocator;
-const Component = @import("component.zig").Component;
+const Component = @import("component.zig");
 const Self = @This();
 
 rwlock: RwLock = .{},
 inited: bool = false,
 arena: Arena,
-baseComponent: *Component(anyopaque),
+baseComponent: *Component,
 
 pub fn lock(self: *Self) void {
     self.rwlock.lock();

@@ -26,21 +26,21 @@ pub fn init(main: fn () anyerror!void, flags: struct {
 
     var gpa = GPA{};
     state.arena = Arena.init(gpa.allocator());
-    var baseComp = try BgPanel.init(state.arena.allocator(), .{ .col = .{
+    const baseComp = try BgPanel.init(state.arena.allocator(), .{ .col = .{
         .a = 255,
         .r = 255,
         .g = 255,
         .b = 0,
     }, .margin = .{ 20, 40, 60, 80 }, .padding = .{ 40, 40, 40, 40 } });
 
-    try baseComp.state.createChild(BgPanel.init, .{.{ .col = .{
-        .a = 255,
-        .r = 255,
-        .g = 255,
-        .b = 0,
-    } }});
+    //try baseComp.createChild(BgPanel.init, .{.{ .col = .{
+    //    .a = 255,
+    //    .r = 255,
+    //    .g = 255,
+    //    .b = 0,
+    //} }});
 
-    state.baseComponent = baseComp.as(anyopaque);
+    state.baseComponent = baseComp.component;
 
     defer {
         state.lock();
