@@ -1,1 +1,2 @@
-.build_config/sdl.json
+.build_config
+zig-*
